@@ -1,0 +1,88 @@
+.header {
+  background-color: #fc4a1a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.headerContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 20px 0px 100px 0px;
+}
+
+.headerList {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.headerItems {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerItems.active {
+  border-bottom: 1px solid rgb(255, 255, 255);
+  padding: 10px;
+}
+
+.headerDesc {
+  margin: 20px 0px;
+}
+
+.headerBtn {
+  border: rgb(102, 101, 101) solid;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 500;
+  color: white;
+  background-color: #f7b733;
+  cursor: pointer;
+}
+
+.headerBtnAlt {
+  border: none;
+  padding: 10px;
+  font-weight: 500;
+  color: white;
+  background-color: #f7b733;
+  cursor: pointer;
+}
+
+.headerSearch {
+  height: 50px;
+  background-color: white;
+  border: 3px solid #737374;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  border-radius: 5px;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  max-width: 1024px;
+}
+
+.headerIcon {
+  color: #dfdce3;
+}
+
+.headerSearchItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerSearchInput {
+  border: none;
+  outline: none;
+}
+
+.headerSearchText {
+  color: #737374;
+  cursor: pointer;
+}

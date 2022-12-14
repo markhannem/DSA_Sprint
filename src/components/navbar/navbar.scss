@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  height: 50px;
+  background-color: #4abdac;
+  display: flex;
+  justify-content: center;
+}
+
+.navContainer {
+  width: 100%;
+  /* CHANGE: max-width to something higher */
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 800;
+}
+
+.navBtn {
+  margin-left: 20px;
+  border: rgb(102, 101, 101) solid;
+  // border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-weight: 500;
+  color: white;
+  background-color: #f7b733;
+  cursor: pointer;
+}
