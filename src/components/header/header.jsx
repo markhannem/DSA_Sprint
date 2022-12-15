@@ -13,18 +13,47 @@ import { DateRange } from "react-date-range";
 import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import { format } from "date-fns";
 
-const Header = () => {
+const Header = ({ type }) => {
+  //setting calender to not show on default
+  const [openDate, setOpenDate] = useState(false);
+
+  const [openOptions, setOpenOptions] = useState(false);
+
+  // const default options for guests
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  });
+
+  // const for calender to display dates user clicks on
   const [date, setDate] = useState([
     {
       startDate: new Date(),
-      endDate: null,
+      endDate: new Date(),
       key: "selection",
     },
   ]);
+
+  // const to inc or dec Number of adults, childeren or rooms
+  const eventOption = (name, operation) => {
+    setOptions((prev) => {
+      return {
+        ...prev,
+        [name]: operation === "inc" ? options[name] + 1 : options[name] - 1,
+      };
+    });
+  };
+
   return (
     <div className="header">
-      <div className="headerContainer">
+      <div
+        className={
+          type === "list" ? "headerContainer listType" : "headerContainer"
+        }
+      >
         <div className="headerList">
           <div className="headerItems active">
             <FontAwesomeIcon icon={faBed} />
@@ -47,39 +76,126 @@ const Header = () => {
             <span>Taxi's</span>
           </div>
         </div>
-        <h1 className="headerTitle"> Who need's an excuse for a vacation?</h1>
-        <p className="headerDesc"> Save 10% on your first booking!</p>
-        <button className="headerBtn">SIGN UP/LOGIN</button>
-        <div className="headerSearch">
-          <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faBed} className="headerIcon" />{" "}
-            <input
-              type="text"
-              placeholder="Destination"
-              className="headerSearchInput"
-            />
-          </div>
-          <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faCalendarDay} className="headerIcon" />
-            <span className="headerSearchText"> Date to Date</span>
-            <DateRange
-              editableDateInputs={true}
-              onChange={(item) => setDate([item.selection])}
-              moveRangeOnFirstSelection={false}
-              ranges={date}
-            />
-          </div>
-          <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <span className="headerSearchText">
+        {type !== "list" && (
+          <>
+            <h1 className="headerTitle">
               {" "}
-              2 Adults 2 Children 1 Room
-            </span>
-          </div>
-          <div className="headerSearchItem">
-            <button className="headerBtnAlt">Search</button>
-          </div>
-        </div>
+              Who need's an excuse for a vacation?
+            </h1>
+            <p className="headerDesc"> Save 10% on your first booking!</p>
+            <button className="headerBtn">SIGN UP/LOGIN</button>
+            <div className="headerSearch">
+              <div className="headerSearchItem">
+                <FontAwesomeIcon icon={faBed} className="headerIcon" />{" "}
+                <input
+                  type="text"
+                  placeholder="Destination"
+                  className="headerSearchInput"
+                />
+              </div>
+              <div className="headerSearchItem">
+                <FontAwesomeIcon icon={faCalendarDay} className="headerIcon" />
+                <span
+                  // onClick arrow function to change openDate to opposite so that each click will open/close the calender
+                  onClick={() => setOpenDate(!openDate)}
+                  className="headerSearchText"
+                >
+                  {" "}
+                  {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
+                    date[0].endDate,
+                    "MM/dd/yyyy"
+                  )}`}
+                </span>
+                {/* openDate && means openDate is true */}
+                {openDate && (
+                  <DateRange
+                    editableDateInputs={true}
+                    onChange={(item) => setDate([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={date}
+                    className="date"
+                  />
+                )}
+              </div>
+              <div className="headerSearchItem">
+                <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+                <span
+                  onClick={() => setOpenOptions(!openOptions)}
+                  className="headerSearchText"
+                >
+                  {" "}
+                  {`${options.adult} adult · ${options.children} children · ${options.room} room`}
+                </span>
+                {openOptions && (
+                  <div className="options">
+                    <div className="optionItem">
+                      <span className="optiontext">Adult</span>
+                      <div className="counterContainer">
+                        <button
+                          disabled={options.adult <= 1}
+                          className="optionBtn"
+                          onClick={() => eventOption("adult", "dec")}
+                        >
+                          -
+                        </button>
+                        <span className="optionCounter">{options.adult}</span>
+                        <button
+                          className="optionBtn"
+                          onClick={() => eventOption("adult", "inc")}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="optionItem">
+                      <span className="optiontext">Children</span>
+                      <div className="counterContainer">
+                        <button
+                          disabled={options.children <= 0}
+                          className="optionBtn"
+                          onClick={() => eventOption("children", "dec")}
+                        >
+                          -
+                        </button>
+                        <span className="optionCounter">
+                          {options.children}
+                        </span>
+                        <button
+                          className="optionBtn"
+                          onClick={() => eventOption("children", "inc")}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="optionItem">
+                      <span className="optiontext">Room</span>
+                      <div className="counterContainer">
+                        <button
+                          disabled={options.room <= 1}
+                          className="optionBtn"
+                          onClick={() => eventOption("room", "dec")}
+                        >
+                          -
+                        </button>
+                        <span className="optionCounter">{options.room}</span>
+                        <button
+                          className="optionBtn"
+                          onClick={() => eventOption("room", "inc")}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="headerSearchItem">
+                <button className="headerBtnAlt">Search</button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
