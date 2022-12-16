@@ -5,8 +5,11 @@ How to use this Repo:
 
 METHODS/TECHNOLOGIES USED:
 
-react
-react-router-dom
-fontawesome
-react-date-range
-react-dns
+--HTML
+--CSS
+--JS
+--React
+--react-router-dom
+--fontawesome
+--react-date-range
+--react-dns

@@ -1,4 +1,4 @@
-import React from "react";
+import "./List.css";
 import Header from "../../components/header/header";
 import Navbar from "../../components/navbar/Navbar";
 
@@ -7,6 +7,7 @@ const list = () => {
     <div>
       <Navbar />
       <Header type="list" />
+      <div className="listContainer"></div>
     </div>
   );
 };
