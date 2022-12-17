@@ -1,9 +1,11 @@
 .header {
-  background-color: #fc4a1a;
-  color: white;
+  margin-bottom: 50px;
+  background-color: #9fedd7;
+  color: rgb(49, 49, 49);
   display: flex;
   justify-content: center;
   position: relative;
+  border-bottom: 1px solid #737374;
 }
 
 .headerContainer {
@@ -40,12 +42,12 @@
 }
 
 .headerBtn {
-  border: rgb(102, 101, 101) solid;
+  border: #026670 solid;
   border-radius: 10px;
   padding: 10px;
   font-weight: 500;
   color: white;
-  background-color: #f7b733;
+  background-color: #e85a4f;
   cursor: pointer;
 }
 
@@ -54,8 +56,9 @@
   padding: 10px;
   font-weight: 500;
   color: white;
-  background-color: #f7b733;
+  background-color: #e85a4f;
   cursor: pointer;
+  border-radius: 7px;
 }
 
 .headerSearch {
@@ -71,10 +74,6 @@
   bottom: -25px;
   width: 100%;
   max-width: 1024px;
-}
-
-.headerIcon {
-  color: #dfdce3;
 }
 
 .headerSearchItem {
@@ -98,7 +97,7 @@
 .date {
   position: absolute;
   top: 50px;
-  border: 1px solid rgb(107, 107, 107);
+  border: 1px solid #737374;
   z-index: 10;
 }
 /* ---------------------------------------------- */
@@ -137,6 +136,6 @@
   border-radius: 3px;
   color: white;
   background-color: #fc4a1a;
-  border: solid 1px #737374;
+  border: solid 1px #edeae5;
   cursor: pointer;
 }

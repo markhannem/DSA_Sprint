@@ -30,9 +30,9 @@ const Footer = () => {
           <li className="fItem"> Contact Us</li>
           <li className="fItem"> Reviews</li>
           <li className="fItem"> Terms & Conditions</li>
+          <div className="fText">Copyright © 2022 NFLDtravel</div>
         </ul>
       </div>
-      <div className="fText">Copyright © 2022 NFLDtravel</div>
     </div>
   );
 };

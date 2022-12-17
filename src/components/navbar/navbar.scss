@@ -6,7 +6,7 @@
 
 .navbar {
   height: 50px;
-  background-color: #4abdac;
+  background-color: #026670;
   display: flex;
   justify-content: center;
 }
@@ -27,12 +27,12 @@
 
 .navBtn {
   margin-left: 20px;
-  border: rgb(102, 101, 101) solid;
+  border: #edeae5 solid 1px;
   // border: none;
   border-radius: 8px;
   padding: 5px 10px;
   font-weight: 500;
-  color: white;
-  background-color: #f7b733;
+  color: rgb(255, 255, 255);
+  background-color: #e85a4f;
   cursor: pointer;
 }

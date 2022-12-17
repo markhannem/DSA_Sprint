@@ -1,13 +1,14 @@
 .mail {
   width: 100%;
   margin-top: 50px;
-  background-color: #fc4a1a;
-  color: white;
+  background-color: #9fedd7;
+  color: rgb(49, 49, 49);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   padding: 50px;
+  border: 1px solid #737374;
 }
 
 .mailInput > input {
@@ -21,7 +22,7 @@
 
 .mailInput > button {
   height: 50px;
-  background-color: #f7b733;
+  background-color: #026670;
   color: white;
   font-weight: 500;
   border: none;

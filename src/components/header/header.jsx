@@ -14,10 +14,15 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ type }) => {
   //setting calender to not show on default
+  // Date State
   const [openDate, setOpenDate] = useState(false);
+
+  // Destination State
+  const [dest, setDest] = useState("");
 
   const [openOptions, setOpenOptions] = useState(false);
 
@@ -45,6 +50,13 @@ const Header = ({ type }) => {
         [name]: operation === "inc" ? options[name] + 1 : options[name] - 1,
       };
     });
+  };
+
+  const nav = useNavigate();
+  // const to handle the search and direct user to the search page
+
+  const eventSearch = () => {
+    nav("/hotels", { state: { dest, date, options } });
   };
 
   return (
@@ -91,6 +103,7 @@ const Header = ({ type }) => {
                   type="text"
                   placeholder="Destination"
                   className="headerSearchInput"
+                  onChange={(e) => setDest(e.target.value)}
                 />
               </div>
               <div className="headerSearchItem">
@@ -114,6 +127,7 @@ const Header = ({ type }) => {
                     moveRangeOnFirstSelection={false}
                     ranges={date}
                     className="date"
+                    minDate={new Date()}
                   />
                 )}
               </div>
@@ -191,7 +205,9 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className="headerSearchItem">
-                <button className="headerBtnAlt">Search</button>
+                <button className="headerBtnAlt" onClick={eventSearch}>
+                  Search
+                </button>
               </div>
             </div>
           </>
