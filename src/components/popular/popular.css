@@ -20,10 +20,12 @@
 
 .pName {
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .pCity {
   font-weight: 300;
+  text-transform: capitalize;
 }
 
 .pPrice {

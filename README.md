@@ -13,3 +13,10 @@ METHODS/TECHNOLOGIES USED:
 --fontawesome
 --react-date-range
 --react-dns
+
+---
+
+ERROR1:
+may have to delete package-lock.json and node modules and install again for proxy to work
+
+## proxy is located in the package.json file of frontend

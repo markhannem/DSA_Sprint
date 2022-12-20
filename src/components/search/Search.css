@@ -28,6 +28,7 @@
 .srchTitle {
   font-size: 20px;
   color: #026670;
+  text-transform: capitalize;
 }
 
 .srchDis {

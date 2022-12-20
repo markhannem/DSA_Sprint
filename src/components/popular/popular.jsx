@@ -1,49 +1,35 @@
 import "./popular.css";
 import htl1 from "./imgs/htl1.png";
+import useFetch from "../../hooks/fetch";
 
 const Popular = () => {
+  const { data, loading, error } = useFetch("/hotels?featured=true&limit=4");
   return (
     <div className="popular">
-      <div className="pItem">
-        <img src={htl1} alt="" className="pImg" />
-        <span className="pName">Sheraton Hotels</span>
-        <span className="pCity">St.John's</span>
-        <span className="pPrice">Starting from $100</span>
-        <div className="pRating">
-          <button>9.0</button>
-          <span>Excellent</span>
-        </div>
-      </div>
-      <div className="pItem">
-        <img src={htl1} alt="" className="pImg" />
-        <span className="pName">Comfort Suites Airport</span>
-        <span className="pCity">Austin</span>
-        <span className="pPrice">Starting from $140</span>
-        <div className="pRating">
-          <button>8.7</button>
-          <span>Exceptional</span>
-        </div>
-      </div>
-      <div className="pItem">
-        <img src={htl1} alt="" className="pImg" />
-        <span className="pName">Four Seasons Hotel</span>
-        <span className="pCity">Lisbon</span>
-        <span className="pPrice">Starting from $99</span>
-        <div className="pRating">
-          <button>8.8</button>
-          <span>Excellent</span>
-        </div>
-      </div>
-      <div className="pItem">
-        <img src={htl1} alt="" className="pImg" />
-        <span className="pName">Hilton Garden Inn</span>
-        <span className="pCity">Berlin</span>
-        <span className="pPrice">Starting from $105</span>
-        <div className="pRating">
-          <button>8.9</button>
-          <span>Excellent</span>
-        </div>
-      </div>
+      {loading ? (
+        "Loading"
+      ) : (
+        <>
+          {data.map((item) => (
+            <div className="pItem" key={item._id}>
+              <img src={htl1} alt="" className="pImg" />
+              {/* Need to find out how to upload/fetch pictures to database */}
+              {/* <img src={item.photos[0]} alt="" className="pImg" /> */}
+              <span className="pName">{item.name}</span>
+              <span className="pCity">{item.city}</span>
+              <span className="pPrice">
+                Starting from ${item.cheapestPrice}
+              </span>
+              {item.rating && (
+                <div className="pRating">
+                  <button>{item.rating}</button>
+                  <span>Excellent</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 };

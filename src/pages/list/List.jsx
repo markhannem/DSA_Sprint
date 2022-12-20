@@ -7,15 +7,24 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import Search from "../../components/search/Search";
 import Mail from "../../components/mail/Mail";
+import useFetch from "../../hooks/fetch";
 
 const List = () => {
   const location = useLocation();
-
   const [openDate, setOpenDate] = useState(false);
-
   const [dest, setDest] = useState(location.state.dest);
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState(location.state.options);
+  const [min, setMin] = useState(undefined);
+  const [max, setMax] = useState(undefined);
+
+  const { data, loading, error, reFetch } = useFetch(
+    `/hotels?city=${dest}&min=${min || 0}&max=${max || 1000}`
+  );
+
+  const eventClick = () => {
+    reFetch();
+  };
 
   return (
     <div>
@@ -53,13 +62,21 @@ const List = () => {
                   <span className="optText">
                     Min Price <small>Per Night</small>
                   </span>
-                  <input type="number" className="optInput" />
+                  <input
+                    type="number"
+                    onChange={(e) => setMin(e.target.value)}
+                    className="optInput"
+                  />
                 </div>
                 <div className="listOption">
                   <span className="optText">
                     Max Price <small>Per Night</small>
                   </span>
-                  <input type="number" className="optInput" />
+                  <input
+                    type="number"
+                    onChange={(e) => setMax(e.target.value)}
+                    className="optInput"
+                  />
                 </div>
                 <div className="listOption">
                   <span className="optText">Adult</span>
@@ -90,17 +107,18 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button>Search</button>
+            <button onClick={eventClick}>Search</button>
           </div>
           <div className="result">
-            <Search />
-            <Search />
-            <Search />
-            <Search />
-            <Search />
-            <Search />
-            <Search />
-            <Search />
+            {loading ? (
+              "loading"
+            ) : (
+              <>
+                {data.map((item) => (
+                  <Search item={item} key={item._id} />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
