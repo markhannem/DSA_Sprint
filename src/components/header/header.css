@@ -1,7 +1,9 @@
 .header {
   margin-bottom: 50px;
-  background-color: #9fedd7;
+  background-image: url(../../../public/imgs/header_framev8.png);
+  /* background-color: #9fedd7; */
   color: rgb(49, 49, 49);
+  font-weight: 800;
   display: flex;
   justify-content: center;
   position: relative;

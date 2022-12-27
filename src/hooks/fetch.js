@@ -1,3 +1,8 @@
+// custom React hook that uses the Fetch API to retrieve data from the given URL.
+// useEffect to fetch data and the URL is a parameter.
+// The useState hooks are used to store the data, loading state, and error state.
+// The reFetch function is used to refresh the data when the URL changes. if the URL changes, when entering in min/max price in a hotel search.
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 

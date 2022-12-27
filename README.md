@@ -20,3 +20,9 @@ ERROR1:
 may have to delete package-lock.json and node modules and install again for proxy to work
 
 ## proxy is located in the package.json file of frontend
+
+Future improvements to this project
+
+---finish login/sign up page
+---add hotel reservations and link to the user account
+---try and make search better since it is character specific
